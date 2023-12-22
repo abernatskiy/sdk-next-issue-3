@@ -11,14 +11,13 @@ import {
 import {allFields} from './allFields'
 
 export const processor = new EvmBatchProcessor()
-    .setDataSource({
-        chain: {
-            rateLimit: 10
-        }
+    .setRpcEndpoint({
+        url: assertNotNull(process.env.RPC_OPTIMISM_HTTP),
+        rateLimit: 10
     })
     .setFinalityConfirmation(15)
     .setFields(allFields)
-    .addTransaction({
+    .addTrace({
         type: ['call'],
         callTo: ['0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45'], // Uniswap v3 router
         transaction: true,

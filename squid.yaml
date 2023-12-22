@@ -5,7 +5,9 @@ description: 'The very first evm squid from manifest  '
 build: 
 deploy:
   addons:
-    postgres: 
+    postgres:
+    rpc:
+      - optimism:http
   processor:
     cmd:
       - sqd
@@ -16,3 +18,7 @@ deploy:
     cmd:
       - sqd
       - serve:prod
+scale:
+  addons:
+    rpc:
+      max-rate: 20rps
